@@ -41,7 +41,6 @@ example 1.3 ls.c
 ```c
 #include "apue.h"
 #include <dirent.h>
-#include "myerr.h"
 
 int 
 main(int argc ,char *argv[])
@@ -70,6 +69,12 @@ main(int argc ,char *argv[])
 搜索找到[CSDN:关于unix高级环境编程 编译时的err_sys和err_quit错误](https://blog.csdn.net/cuiyifang/article/details/8288649)
 
 新建文件myerr.h,放在`/usr/include/`下
+ls.c 加入头文件
+
+```c
+#include "myerr.h"
+```
+
 ## 7. 成功
 
 ```
