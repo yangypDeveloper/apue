@@ -1,4 +1,4 @@
-# apue
+# UNIX高级环境编程(第三版)环境搭建
 
 > 环境安装:环境,云服务器 CentOS Linux release 7.4.1708 (Core) ,本地 macOS 10.13
 
@@ -15,13 +15,14 @@ tar -zxvf src.3e.tar.gz
 ```
 
 ## 2. 编译
-进入解压后的文件夹`make`
+进入解压后的文件夹执行命令: `make`
 
 ## 3. 报错
-> undefined reference to `heapsort'
-collect2: error: ld returned 1 exit status
+
+> undefined reference to 'heapsort' collect2: error: ld returned 1 exit status
 
 ## 4. 解决
+
 ```
 wget http://elrepo.reloumirrors.net/testing/el6/x86_64/RPMS/libbsd-0.2.0-4.el6.elrepo.x86_64.rpm
 wget http://elrepo.reloumirrors.net/testing/el6/x86_64/RPMS/libbsd-devel-0.2.0-4.el6.elrepo.x86_64.rpm
