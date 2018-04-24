@@ -37,7 +37,7 @@ sudo cp  ./lib/libapue.a   /usr/local/lib/
 
 > 网上买的书还没到,先跟着网上的中文版的做,报错中对照英文版才发现第二版,和第三版有些出入,
 
-example 1.3 ls.c
+example 1.3 ls1.c
 
 ```c
 #include "apue.h"
@@ -70,24 +70,42 @@ main(int argc ,char *argv[])
 搜索找到[CSDN:关于unix高级环境编程 编译时的err_sys和err_quit错误](https://blog.csdn.net/cuiyifang/article/details/8288649)
 
 新建文件myerr.h,放在`/usr/include/`下
-ls.c 加入头文件
+ls1.c 加入头文件
 
 ```c
 #include "myerr.h"
 ```
+> 报错程序可以再书中附录B中找到
 
 ## 7. 成功
 
 ```
-# ./ls
+# ./ls1
 a single argument (thisdirectory name)is required
-# ./ls a
+# ./ls1 a
 can't open a: No such file or directory
-# ./ls ./
+# ./ls1 ./
 ..
 apue.3e
-ls.c
+ls1.c
 src.3e.tar.gz
 .
-ls
+ls1
 ```
+
+## 8. hello world
+
+```c
+#include "apue.h"
+
+int
+main(void)
+{
+	printf("hello world from process ID %ld\n", (long)getpid());
+	exit(0);
+}
+
+```
+
+## 9. 结束
+> hello.c和ls1.c源代码都可以在apue.3e中intro中找到
