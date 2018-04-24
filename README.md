@@ -1,1 +1,87 @@
 # apue
+
+> 环境安装:环境,云服务器 CentOS Linux release 7.4.1708 (Core) ,本地 macOS 10.13
+
+## 0. 相关网站 
+[apue第三版官方网站](http://www.apuebook.com/apue3e.html)
+
+可以下载源码
+
+## 1. 源码下载
+
+```
+wget http://www.apuebook.com/src.3e.tar.gz
+tar -zxvf src.3e.tar.gz 
+```
+
+## 2. 编译
+进入解压后的文件夹`make`
+
+## 3. 报错
+> undefined reference to `heapsort'
+collect2: error: ld returned 1 exit status
+
+## 4. 解决
+```
+wget http://elrepo.reloumirrors.net/testing/el6/x86_64/RPMS/libbsd-0.2.0-4.el6.elrepo.x86_64.rpm
+wget http://elrepo.reloumirrors.net/testing/el6/x86_64/RPMS/libbsd-devel-0.2.0-4.el6.elrepo.x86_64.rpm
+
+rpm -ivh libbsd-0.2.0-4.el6.elrepo.x86_64.rpm
+rpm -ivh libbsd-devel-0.2.0-4.el6.elrepo.x86_64.rpm  
+
+sudo cp  ./include/apue.h   /usr/include/
+sudo cp  ./lib/libapue.a   /usr/local/lib/
+```
+## 5. 测试
+
+> 网上买的书还没到,先跟着网上的中文版的做,报错中对照英文版才发现第二版,和第三版有些出入,
+
+example 1.3 ls.c
+
+```c
+#include "apue.h"
+#include <dirent.h>
+#include "myerr.h"
+
+int 
+main(int argc ,char *argv[])
+{
+    DIR *dp;
+    struct dirent *dirp;
+
+    if(argc != 2)
+        err_quit("a single argument (thisdirectory name)is required");
+
+    if((dp = opendir(argv[1])) == NULL)
+        err_sys("can't open %s",argv[1]);
+    while ((dirp = readdir(dp)) != NULL)
+        printf("%s\n",dirp->d_name);
+
+    closedir(dp);
+    exit(0);
+    return 0;
+}
+```
+
+## 6. 再报错
+
+> undefined reference to `err_quit'
+
+搜索找到[CSDN:关于unix高级环境编程 编译时的err_sys和err_quit错误](https://blog.csdn.net/cuiyifang/article/details/8288649)
+
+新建文件myerr.h,放在`/usr/include/`下
+## 7. 成功
+
+```
+# ./ls
+a single argument (thisdirectory name)is required
+# ./ls a
+can't open a: No such file or directory
+# ./ls ./
+..
+apue.3e
+ls.c
+src.3e.tar.gz
+.
+ls
+```
