@@ -70,11 +70,16 @@ main(int argc ,char *argv[])
 搜索找到[CSDN:关于unix高级环境编程 编译时的err_sys和err_quit错误](https://blog.csdn.net/cuiyifang/article/details/8288649)
 
 新建文件myerr.h,放在`/usr/include/`下
-ls1.c 加入头文件
+apue.h 加入头文件
 
 ```c
-#include "myerr.h"
+#include <signal.h>     /* for SIG_ERR */
+
+#define MAXLINE 4096            /* max line length */
+
+#include "myerr.h" // 这行为新加入的
 ```
+
 `myerr.h`可以在`my/`目录下找到
 > 报错程序可以再书中附录B中找到
 
