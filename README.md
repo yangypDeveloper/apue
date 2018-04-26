@@ -67,21 +67,13 @@ main(int argc ,char *argv[])
 
 > undefined reference to `err_quit'
 
-搜索找到[CSDN:关于unix高级环境编程 编译时的err_sys和err_quit错误](https://blog.csdn.net/cuiyifang/article/details/8288649)
+没有找到err_quit的实现,指定apue库即可
 
-新建文件myerr.h,放在`/usr/include/`下
-apue.h 加入头文件
-
-```c
-#include <signal.h>     /* for SIG_ERR */
-
-#define MAXLINE 4096            /* max line length */
-
-#include "myerr.h" // 这行为新加入的
+```
+gcc ls1.c -lapue
 ```
 
-`myerr.h`可以在`my/`目录下找到
-> 报错程序可以再书中附录B中找到
+
 
 ## 7. 成功
 
